@@ -1,0 +1,28 @@
+<h1>Hello</h1>
+<table>
+  <thead>
+    <tr>
+      <td>Firstname</td>  
+      <td>Lastname</td>
+    </tr>
+  </thead>
+  <tbody>
+     <tr *ngFor="let name of name ;let i=index">
+        <td>{{name.firstName}}</td>
+        <td>{{name.lastName}}</td>
+        <td><button (click)="removeName(i)">Remove</button></td>
+        <td><button (click)="toogleValue(i)">Update</button></td>
+        <td>
+          <form action="" *ngIf="booleanValue[i]"> 
+            <input type="text" [(ngModel)]="updateFName" placeholder="Firstname" [ngModelOptions]="{standalone: true}">
+            <input type="text" [(ngModel)]="updateLName" placeholder="Lastname" [ngModelOptions]="{standalone: true}">
+            <button (click)="update(i)"> UPDATE</button>
+          </form>
+        </td>
+     </tr>
+  </tbody>
+</table>
+<h1>Add User</h1>
+<input type="text" placeholder="Firstname" [(ngModel)]="fName">
+<input type="text" placeholder="Lastname" [(ngModel)]="lName">
+<button (click)="addName()">submit </button>

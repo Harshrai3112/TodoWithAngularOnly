@@ -1,0 +1,24 @@
+<div *ngIf="logValue">
+<h1 class="display-2 text-center text-primary">Login</h1>
+<div class="row container">
+  <div class="col-md-4"></div>
+  <div class="col-md-5">
+    <form action="" class="form-group">
+      <input type="text" placeholder="username" [ngModelOptions]="{standalone: true}" [(ngModel)]="uname" class="form-control">
+      <br>
+      <input type="password" placeholder="password" [ngModelOptions]="{standalone: true}" [(ngModel)]="passwd"  class="form-control">
+      <br>
+      <p class="text-center">
+          <button class="btn btn-outline-primary" (click)="login(1)">Submit</button>
+      </p>
+      
+    </form>
+  </div>
+</div>
+</div>
+<!-- <p *ngIf="logValue ">
+  <a [routerLink]="['/todo',indexOfUser]"> Open todo app </a>
+</p>
+<router-outlet ></router-outlet> -->
+<a *ngIf="!logValue" routerLink="/" (click)="toggleLogValue()">Go back</a>
+<router-outlet ></router-outlet>

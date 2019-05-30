@@ -1,0 +1,116 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="#">TodoApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+<div *ngIf="boolVal ; else noOpen">
+<div class="container">
+  <div class="jumbotron">
+     <h1 class=" text-center">Get Your Task Done Here</h1>
+     <p class="text-center">
+      <button class="btn btn-outline-secondary mt-4">Get Started</button>
+     </p>
+  </div>
+</div>
+<div class="container list-group ">
+  <h4 class="text-center">Pending Task</h4>
+  <ul  class="list-group-item list-group-item-primary p-0 pl-1 pt-1" *ngFor="let task of todoList[userId][j]; let i=index">
+    <li  [@openClose]="isOpen[userId][j][i] ? 'open' : 'closed'" class="m-0">{{task.work}} -  {{task.completionDate | date: "shortDate"}} 
+      <div class="row">
+        <div class="col-md-8">
+            <p *ngIf="task.daysDelayed > 0 ; else remainDays" class="text-danger">Task is delayed by {{task.daysDelayed}} days</p> 
+            <ng-template #remainDays>
+              <p class="text-success">
+                Remaining Days are  {{-task.daysDelayed}}
+              </p> 
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-outline-success btn-sm" (click)="fade(i)">
+              Completed
+           </button>
+          <button class="btn btn-outline-danger ml-1 btn-sm" (click)="update(i)" *ngIf='!toggleForm[userId][j][i]'>
+            Update
+          </button>
+          <button class="btn btn-outline-info ml-1 btn-sm" (click)="delete(i)" > Delete</button>          
+        </div>
+      </div> 
+    </li>
+    <form *ngIf="toggleForm[userId][j][i]">
+        <input type="text" placeholder="Task" [(ngModel)]="updateTask" [ngModelOptions]="{standalone: true}">
+        <input type="Date" placeholder="date" [ngModelOptions]="{standalone: true}" [(ngModel)]="updateComDate">
+        <button class="btn btn-success" (click)="updateList(i)">UPDATE</button>
+     </form>
+  </ul>
+
+</div>
+
+<div class="container mt-5 pb-5 " >
+
+  <h3 class="text-center text-secondary mb-2" >Add Task to list</h3>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"  style="background-color:rgba(244, 127, 65,0.3)">
+        <form class="form-group">
+          <p class="text-center">
+            <label for="" >Add task </label>
+          </p>
+            
+          <input type="text" class="form-control mb-3" placeholder="Task to completed" [(ngModel)]="task" [ngModelOptions]="{standalone: true}">
+          <p class="text-center">
+            <label for="" >Completion Date </label>
+          </p>
+          <input type="Date" class="form-control mb-3" placeholder="Completion Date" [ngModelOptions]="{standalone: true}" [(ngModel)]="comDate">
+          <p class="text-center">
+            <button class="btn btn-outline-primary" (click)="addTask()">Add</button>
+          </p>
+            
+        </form>
+    </div>
+  </div>
+ 
+</div>
+</div>
+<ng-template #noOpen>
+<div class="container " style="margin-bottom:50px;">
+  <div class="row mb-3 p-0 img" id="groceryImg" >
+      <div class="col-md-12   p-4 backColor" >
+        <h3 class="text-center p-5 text-warning head">Grocery Work</h3>
+        <p class="text-center p-3">
+          <button class="btn btn-warning m-3" (click)="openTask(0)">Go to Task</button>
+        </p>
+      </div>
+  </div>
+   <div class="row mb-3 p-0 img" id="officeImg" >
+    <div class="col-md-12  p-4 backColor" >
+       <h3 class="text-center text-warning  p-5 head">Office Work</h3>
+       <p class="text-center p-3">
+         <button class="btn btn-warning m-3" (click)="openTask(1)">Go to Task</button>
+        </p>   
+    </div>
+   </div>
+    <div class="row img" id="collageImg" >
+        <div class="col-md-12  p-4 backColor"  >
+           <h3 class="text-center text-warning  p-5 head">Collage Work</h3>
+           <p class="text-center p-3">
+             <button class="btn btn-warning m-3" (click)="openTask(2)">Go to Task</button>
+            </p>   
+          </div>
+    </div> 
+  
+</div>
+</ng-template>

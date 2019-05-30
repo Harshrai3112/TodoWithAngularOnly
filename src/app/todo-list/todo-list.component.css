@@ -1,0 +1,31 @@
+.jumbotron{
+  font-weight: 200;
+}
+.btn-outline-success{
+  /* margin-left:35rem; */
+}
+
+#groceryImg{
+  background-image: url("https://images.unsplash.com/photo-1556477632-f920fad6dbc9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60");
+}
+
+#officeImg{
+  background-image: url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60");
+}
+#collageImg{
+  background-image: url("https://images.unsplash.com/photo-1474650919751-b7e21a1b180f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60");
+ 
+}
+.img{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.backColor{
+  background-color:rgba(244, 157, 65,0.5);
+}
+.head{
+  color: rgb(152, 66, 244);
+  font-size:36px;
+  font-weight: 800;
+}
